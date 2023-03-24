@@ -5,12 +5,17 @@ version: 2.1
 #########
 orbs:
   heroku: circleci/heroku@1.0.1
-
+  ta-python: travelaudience/python@1.1.2
 ############
 # Workflows
 ############
 workflows:
   version: 2
+  # Static code analysis
+  codeValidation:
+    jobs:
+      - ta-python/test
+      - ta-python/pylint
   build-deploy:
     jobs:
       - build
